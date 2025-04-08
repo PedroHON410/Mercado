@@ -68,14 +68,17 @@ public class Menu {
                             System.out.print("Quantidade desejada: ");
                             int qntVenda = sc.nextInt();
                             sc.nextLine();
-
-                            venda.venda(produtos[i], qntVenda);
-                            i = produtos.length;
-                        }
-                        if (i == produtos.length - 1) {
+                            if (qntVenda > produtos[i].qntEstoque) {
+                                System.out.println("Quantidade de venda maior que quantidade de estoque!");
+                            } else {
+                                venda.venda(produtos[i], qntVenda);
+                                i = produtos.length;
+                                System.out.println("Total da venda: R$" + venda.Total);
+                            }
+                        }else if (i == produtos.length - 1) {
                             System.out.println("Produto não encontrado.");
                         }
-                        System.out.println("Total da venda: R$"+venda.Total);
+
                     }
                     break;
                 }
@@ -90,7 +93,6 @@ public class Menu {
                             System.out.print("Quantidade desejada: ");
                             int addestoque = sc.nextInt();
                             sc.nextLine();
-
                             produtos[i].addEstoque(addestoque);
                             i = produtos.length;
                             System.out.println("Adicionado com sucesso!");
